@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mds.dao.RecordMapper">
+    <select id="getAllRecord" resultType="com.example.mds.pojo.Record" >
+        select * from record
+     </select>
+    <select id="findById" resultType="com.example.mds.pojo.Record" parameterType="com.example.mds.pojo.Record">
+		select * from record where  r_id=#{r_id}
+	</select>
+    <insert id="addRecord" useGeneratedKeys="true" keyProperty="r_id" parameterType="com.example.mds.pojo.Record">
+        insert into record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null and uid != ''">
+                uid,
+            </if>
+            <if test="equip_id != null and equip_id != ''">
+                equip_id,
+            </if>
+            <if test="quantity != null and quantity != ''">
+                quantity,
+            </if>
+            <if test="r_time != null">
+                r_time,
+            </if>
+            <if test="status != null and status != ''">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="uid != null and uid != ''">
+                #{uid},
+            </if>
+            <if test="equip_id != null and equip_id != ''">
+                #{equip_id},
+            </if>
+            <if test="quantity != null and quantity != ''">
+                #{quantity},
+            </if>
+            <if test="r_time != null">
+                #{r_time},
+            </if>
+            <if test="status != null and status != ''">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateRecord" parameterType="com.example.mds.pojo.Record">
+        update record set
+        <trim suffixOverrides=",">
+            <if test="uid != null and uid != ''">
+                uid=#{uid},
+            </if>
+            <if test="equip_id != null and equip_id != ''">
+                equip_id=#{equip_id},
+            </if>
+            <if test="quantity != null and quantity != ''">
+                quantity=#{quantity},
+            </if>
+            <if test="r_time != null">
+                r_time=#{r_time},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status},
+            </if>
+        </trim>
+        where r_id=#{r_id}
+    </update>
+    <delete id="deleteRecord" parameterType="com.example.mds.pojo.Record">
+        delete from record where r_id=#{r_id}
+    </delete>
+</mapper>

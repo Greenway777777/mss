@@ -11,11 +11,11 @@ public interface DepartmentMapper {
     // 查找所有部门信息
     List<Department> getAllDepartment();
     // 添加新部门
-    Integer addDepartment(Department department);
+    void addDepartment(Department department);
     // 修改部门信息
-    Integer updateDepartment(Department department);
+    void updateDepartment(Department department);
     // 删除部门信息
-    Integer deleteDepartment(int dept_id);
+    void deleteDepartment(int dept_id);
     // 通过部门id查询部门信息
     Department findById(int id);
 }
