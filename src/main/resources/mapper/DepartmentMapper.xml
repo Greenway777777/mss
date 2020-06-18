@@ -6,13 +6,16 @@
     <select id="getAllDepartment" resultType="com.example.mds.pojo.Department" >
         select * from department
      </select>
-    <insert id="addDepartment" parameterType="com.example.mds.pojo.Department">
+    <select id="findById" resultType="com.example.mds.pojo.Department" parameterType="com.example.mds.pojo.Department">
+		select * from department where  dept_id=#{dept_id}
+	</select>
+    <insert id="addDepartment" useGeneratedKeys="true" parameterType="com.example.mds.pojo.Department">
         insert into department (dept_name) values (#{dept_name});
     </insert>
     <update id="updateDepartment" parameterType="com.example.mds.pojo.Department">
         update department set dept_name=#{dept_name} where dept_id=#{dept_id}
     </update>
-    <delete id="deleteDepartment">
+    <delete id="deleteDepartment" parameterType="com.example.mds.pojo.Department">
         delete from department where dept_id=#{dept_id}
     </delete>
 </mapper>

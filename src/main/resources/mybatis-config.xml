@@ -17,4 +17,22 @@
 
     <!-- Continue editing here -->
 
+    <!-- 配置数据库连接信息 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/mss" />
+                <property name="username" value="root" />
+                <property name="password" value="123456" />
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 映射文件定位 -->
+    <!--这个就是说一下，要执行的sql语句的xml文件在哪，这里可以写相对路径也可以写绝对路径，绝对路径就是url，相对路径使用resource-->
+    <mappers>
+        <package name = "mapper" />
+    </mappers>
+
 </configuration>

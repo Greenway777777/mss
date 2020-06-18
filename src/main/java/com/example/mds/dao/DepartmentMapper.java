@@ -8,11 +8,14 @@ import java.util.List;
 @Mapper
 public interface DepartmentMapper {
 
+    // 查找所有部门信息
     List<Department> getAllDepartment();
-
+    // 添加新部门
     Integer addDepartment(Department department);
-
+    // 修改部门信息
     Integer updateDepartment(Department department);
-
-    Integer deleteDepartment(Integer dept_id);
+    // 删除部门信息
+    Integer deleteDepartment(int dept_id);
+    // 通过部门id查询部门信息
+    Department findById(int id);
 }

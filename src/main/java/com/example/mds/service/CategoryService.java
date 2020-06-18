@@ -16,7 +16,7 @@ public class CategoryService {
     //查询所有记录并根据id从大到小排序
     public List<Category> list()
     {
-        Sort sort=new Sort(Sort.Direction.DESC,"id");//参数不要有_  会报错
+        Sort sort=new Sort(Sort.Direction.DESC,"id");//参数不要有_
         return categoryDao.findAll(sort);
     }
 
