@@ -12,13 +12,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+//@Controller
 public class MedicalController {
     @Autowired
     EquipmentService equipmentService;
 
     @CrossOrigin
-    @GetMapping(value = "/api/equipments")
+    //@GetMapping(value = "/api/equipments")
     @ResponseBody
     public List<Equipment> listEquipment()
     {
@@ -26,16 +26,16 @@ public class MedicalController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/equipments")
+    //@PostMapping(value = "/api/equipments")
     @ResponseBody
     public Equipment addOrUpdate(@RequestBody Equipment equipment) throws Exception
     {
-        equipmentService.addOrUpdate(equipment);
+        //equipmentService.addOrUpdate(equipment);
         return equipment;
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/delete")
+    //@PostMapping(value = "/api/delete")
     @ResponseBody
     public void delete(@RequestBody Equipment equipment) throws Exception
     {
@@ -43,7 +43,7 @@ public class MedicalController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/api/category/{cate_id}/equipments")
+    //@GetMapping(value = "/api/category/{cate_id}/equipments")
     @ResponseBody
     public List<Equipment> listByCategory(@PathVariable("cate_id") int cate_id) throws Exception
     {
@@ -58,7 +58,7 @@ public class MedicalController {
     }
 
     @CrossOrigin
-    @GetMapping("/api/search")
+    //@GetMapping("/api/search")
     @ResponseBody
     public List<Equipment> searchResult(@RequestParam("keywords") String keywords) {
         // 关键词为空时查询出所有器械
@@ -70,7 +70,7 @@ public class MedicalController {
     }
 
     @CrossOrigin
-    @PostMapping("api/covers")
+    //@PostMapping("api/covers")
     @ResponseBody
     public String coversUpload(MultipartFile file) throws Exception {
         String folder = "D:/Medicalcreditsystem/mds/src/main/resources/static/static/img";

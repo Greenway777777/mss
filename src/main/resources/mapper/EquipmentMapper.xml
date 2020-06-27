@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mds.dao.EquipmentMapper">
+    <select id="findAll" resultType="com.example.mds.pojo.Equipment" >
+        select * from equipment
+     </select>
+    <select id="findById" resultType="com.example.mds.pojo.Equipment" parameterType="com.example.mds.pojo.Equipment">
+		select * from equipment where  equip_id=#{id}
+	</select>
+    <insert id="add" useGeneratedKeys="true" keyProperty="equip_id" parameterType="com.example.mds.pojo.Equipment">
+        insert into equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="equip_name != null and equip_name != ''">
+                equip_name,
+            </if>
+            <if test="cate_id != null and cate_id != ''">
+                cate_id,
+            </if>
+            <if test="quantity != null and quantity != ''">
+                quantity,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="equip_name != null and equip_name != ''">
+                #{equip_name},
+            </if>
+            <if test="cate_id != null and cate_id != ''">
+                #{cate_id},
+            </if>
+            <if test="quantity != null and quantity != ''">
+                #{quantity},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.example.mds.pojo.Equipment">
+        update equipment set
+        <trim suffixOverrides=",">
+            <if test="equip_name != null and equip_name != ''">
+                equip_name=#{equip_name},
+            </if>
+            <if test="cate_id != null and cate_id != ''">
+                cate_id=#{cate_id},
+            </if>
+            <if test="quantity != null and quantity != ''">
+                quantity=#{quantity},
+            </if>
+        </trim>
+        where equip_id=#{id}
+    </update>
+    <delete id="deleteById" parameterType="com.example.mds.pojo.Equipment">
+        delete from equipment where equip_id=#{id}
+    </delete>
+    <select id="searchLike" resultType="com.example.mds.pojo.Equipment">
+        select * from equipment where equip_name like concat('%','#{key}','%')
+    </select>
+
+</mapper>

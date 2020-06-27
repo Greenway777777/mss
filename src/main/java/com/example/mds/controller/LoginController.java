@@ -79,7 +79,7 @@ public class LoginController {
         // 存储用户信息，包括 salt 与 hash 后的密码
         user.setSalt(salt);
         user.setPassword(encodedPassword);
-        userService.add(user);
+        userService.addU(user);
 
         return ResultFactory.buildSuccessResult(user);
     }

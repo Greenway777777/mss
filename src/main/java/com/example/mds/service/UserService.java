@@ -1,6 +1,6 @@
 package com.example.mds.service;
 
-import com.example.mds.dao.UserDao;
+import com.example.mds.dao.UserMapper;
 import com.example.mds.pojo.User;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -10,8 +10,8 @@ import org.springframework.web.util.HtmlUtils;
 
 @Service
 public class UserService {
-    @Autowired
-    UserDao userDAO;
+    @Autowired(required = false)
+    UserMapper userMapper;
 
     //判断用户是否存在
     public boolean isExist(String username)
@@ -23,19 +23,25 @@ public class UserService {
     //根据用户名查询
     public User getByName(String username)
     {
-        return userDAO.findByUsername(username);
+        return userMapper.findByUsername(username);
     }
 
     //根据用户名和密码查询
     public User get(String username,String password)
     {
-        return userDAO.getByUsernameAndPassword(username,password);
+        return userMapper.getByUsernameAndPassword(username,password);
     }
 
     //添加用户记录
-    public void add(User user)
+    public void addU(User user)
     {
-        userDAO.save(user);
+        userMapper.add(user);
+    }
+
+    //修改用户记录
+    public void update(User user)
+    {
+        userMapper.update(user);
     }
 
     public int register(User user) {
@@ -63,7 +69,7 @@ public class UserService {
         user.setSalt(salt);
         user.setPassword(encodedPassword);
 
-        userDAO.save(user);
+        userMapper.add(user);
 
         return 1;
     }
